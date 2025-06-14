@@ -1,11 +1,11 @@
 # Production Automation Tool Front-End
 **Aluno: Jaquinei de Oliveira**
 
-Este projeto faz parte do *MVP* da *Sprint 2* da Disciplina **Desenvolvimento Back-End Avançado**.
+Este projeto faz parte do *MVP* da *Sprint 3* da Disciplina **Desenvolvimento Back-End Avançado**.
 
 O objetivo é apresentar o resultado prático obtido após o estudo do conteúdo apresentado ao longo das aulas da disciplinas apresentadas durante este Sprint.
 
-O MVP consiste em um Front-End, um Back-End e o acesso a uma API externa.
+O MVP consiste em um Front-End e o acesso a uma API externa.
 
 Este repositorio faz parte do MVP e contem o código para o Front-End.
 
@@ -70,11 +70,6 @@ Certifique-se que o Docker esteja instalados
 ## Front-End (Interface)
 
 O código do Front-End está disponível neste repositório. Detalhes estão apresentados na secão [Front-End (Interface)](#frontend-interface)
-
-## Backend (API)
-
-O código do Back-End está disponível em outro repositório. Foi feito usando Python: flask como servidor web e sqlite como banco de dados. 
-Uma REST API é disponibilizada através do Back-End para uso pelo Front-End. Detalhes sobre as rotas estão diponíveis no respositório Back-End. O Back-End utiliza a API do Notion para obter os dados e disponibilizá-los para o Front-End.
 
 ## Acesso a uma API externa
 
