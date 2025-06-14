@@ -6,6 +6,8 @@ import Menu from './components/Menu';
 import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import CreateTicket from './pages/CreateTicket';
+
 
 const App = () => {
   return (
@@ -16,6 +18,8 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/create-ticket" element={<CreateTicket />} />
+
     </Routes>
       <Footer />
     </Router>
