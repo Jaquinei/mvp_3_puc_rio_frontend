@@ -1,8 +1,15 @@
 import React from 'react';
+import {
+  Card,
+  CardContent,
+  Typography,
+  IconButton,
+  CardActions
+} from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 import LowPriorityIcon from '@mui/icons-material/LowPriority';
 import MediumPriorityIcon from '@mui/icons-material/Error';
 import HighPriorityIcon from '@mui/icons-material/PriorityHigh';
-import { Card, CardContent, Typography } from '@mui/material';
 
 const getPriorityIcon = (priority) => {
   switch (priority.toLowerCase()) {
@@ -17,9 +24,9 @@ const getPriorityIcon = (priority) => {
   }
 };
 
-const Ticket = ({ ticket }) => {
+const Ticket = ({ ticket, onDelete }) => {
   return (
-    <Card className="ticket">
+    <Card>
       <CardContent>
         <Typography variant="h5" component="h2">
           {ticket.title}
@@ -31,6 +38,11 @@ const Ticket = ({ ticket }) => {
           Priority: {getPriorityIcon(ticket.priority)} {ticket.priority}
         </Typography>
       </CardContent>
+      <CardActions>
+        <IconButton aria-label="delete" onClick={() => onDelete(ticket.id)}>
+          <DeleteIcon />
+        </IconButton>
+      </CardActions>
     </Card>
   );
 };

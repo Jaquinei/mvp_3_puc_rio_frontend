@@ -65,10 +65,7 @@ const TicketForm = ({ onSubmit }) => {
 
   return (
     <Container maxWidth="sm">
-      <Box sx={{ mt: 4 }}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Create Ticket
-        </Typography>
+      <Box sx={{ mt: 4 }}>        
         <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
           <TextField
             fullWidth

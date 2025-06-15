@@ -3,6 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import TicketForm from '../components/TicketForm';
 import Snackbar from '../components/Snackbar';
 
+import {  
+  Typography  
+} from '@mui/material';
+
 const CreateTicket = () => {
   const navigate = useNavigate();
   const [snackbarMessage, setSnackbarMessage] = useState('');
@@ -23,9 +27,11 @@ const CreateTicket = () => {
    setTimeout( ()=> {navigate('/')}, 5000);
   };
 
-  return (
-    <div>
-      <h2>Create a Ticket</h2>
+  return (    
+    <div>  
+        <Typography variant="h3" component="h1" gutterBottom align="center">
+          Create Ticket
+        </Typography>   
       <TicketForm onSubmit={handleSubmit} />
       <Snackbar message={snackbarMessage} />
     </div>

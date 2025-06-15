@@ -1,4 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import {
+  Container,
+  Typography,
+  Grid,
+  Card,
+  CardContent,
+  Alert
+} from '@mui/material';
 import Ticket from '../components/Ticket';
 
 const Home = ({ searchTerm }) => {
@@ -25,19 +33,35 @@ const Home = ({ searchTerm }) => {
     setFilteredTickets(filtered);
   }, [searchTerm, tickets]);
 
+  const handleDelete = (id) => {
+    const updatedTickets = tickets.filter(ticket => ticket.id !== id);
+    setTickets(updatedTickets);
+    localStorage.setItem('tickets', JSON.stringify(updatedTickets));
+  };
+
   return (
-    <div>
-      <h2>Ticket List</h2>
+    <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+      <Typography variant="h4" component="h1" gutterBottom>
+        Ticket List
+      </Typography>
       {filteredTickets.length === 0 ? (
-        <p>No tickets found.</p>
+        <Alert severity="info" sx={{ width: '100%' }}>
+          No tickets found.
+        </Alert>
       ) : (
-        <div className="ticket-list">
+        <Grid container spacing={3} justifyContent="center">
           {filteredTickets.map(ticket => (
-            <Ticket key={ticket.id} ticket={ticket} />
+            <Grid item xs={12} sm={6} key={ticket.id} sx={{ minWidth: 400 }}>
+              <Card sx={{ width: '100%' }}>
+                <CardContent>
+                  <Ticket ticket={ticket} onDelete={handleDelete} />
+                </CardContent>
+              </Card>
+            </Grid>
           ))}
-        </div>
+        </Grid>
       )}
-    </div>
+    </Container>
   );
 };
 
