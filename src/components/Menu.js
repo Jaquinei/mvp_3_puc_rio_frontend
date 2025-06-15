@@ -16,11 +16,11 @@ const Menu = () => {
           </ListItemIcon>
           <ListItemText primary="Home" />
         </ListItem>
-        <ListItem component={Link} to="/about" style={{ textDecoration: 'none', color: 'inherit' }}>
+        <ListItem component={Link} to="/create-ticket" style={{ textDecoration: 'none', color: 'inherit' }}>
           <ListItemIcon style={{ color: 'white' }}>
-            <InfoIcon />
+            <AddCircleIcon />
           </ListItemIcon>
-          <ListItemText primary="About" />
+          <ListItemText primary="Create Ticket" />
         </ListItem>
         <ListItem component={Link} to="/contact" style={{ textDecoration: 'none', color: 'inherit' }}>
           <ListItemIcon style={{ color: 'white' }}>
@@ -28,11 +28,11 @@ const Menu = () => {
           </ListItemIcon>
           <ListItemText primary="Contact" />
         </ListItem>
-        <ListItem component={Link} to="/create-ticket" style={{ textDecoration: 'none', color: 'inherit' }}>
+        <ListItem component={Link} to="/about" style={{ textDecoration: 'none', color: 'inherit' }}>
           <ListItemIcon style={{ color: 'white' }}>
-            <AddCircleIcon />
+            <InfoIcon />
           </ListItemIcon>
-          <ListItemText primary="Create Ticket" />
+          <ListItemText primary="About" />
         </ListItem>
       </List>
     </nav>
