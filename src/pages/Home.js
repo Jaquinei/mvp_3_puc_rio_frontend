@@ -3,8 +3,6 @@ import {
   Container,
   Typography,
   Grid,
-  Card,
-  CardContent,
   Alert
 } from '@mui/material';
 import Ticket from '../components/Ticket';
@@ -16,6 +14,7 @@ const Home = ({ searchTerm }) => {
   useEffect(() => {
     const storedTickets = JSON.parse(localStorage.getItem('tickets')) || [];
     setTickets(storedTickets);
+    setFilteredTickets(storedTickets);
   }, []);
 
   useEffect(() => {
@@ -26,8 +25,9 @@ const Home = ({ searchTerm }) => {
 
     const lowercasedSearchTerm = searchTerm.toLowerCase();
     const filtered = tickets.filter(ticket =>
-      ticket.title.toLowerCase().includes(lowercasedSearchTerm) ||
-      ticket.description.toLowerCase().includes(lowercasedSearchTerm) ||
+      ticket.name.toLowerCase().includes(lowercasedSearchTerm) ||
+      ticket.product.toLowerCase().includes(lowercasedSearchTerm) ||
+      ticket.type.toLowerCase().includes(lowercasedSearchTerm) ||
       ticket.priority.toLowerCase().includes(lowercasedSearchTerm)
     );
     setFilteredTickets(filtered);
@@ -35,6 +35,14 @@ const Home = ({ searchTerm }) => {
 
   const handleDelete = (id) => {
     const updatedTickets = tickets.filter(ticket => ticket.id !== id);
+    setTickets(updatedTickets);
+    localStorage.setItem('tickets', JSON.stringify(updatedTickets));
+  };
+
+  const handleEdit = (updatedTicket) => {
+    const updatedTickets = tickets.map(ticket =>
+      ticket.id === updatedTicket.id ? updatedTicket : ticket
+    );
     setTickets(updatedTickets);
     localStorage.setItem('tickets', JSON.stringify(updatedTickets));
   };
@@ -52,11 +60,7 @@ const Home = ({ searchTerm }) => {
         <Grid container spacing={3} justifyContent="center">
           {filteredTickets.map(ticket => (
             <Grid item xs={12} sm={6} key={ticket.id} sx={{ minWidth: 400 }}>
-              <Card sx={{ width: '100%' }}>
-                <CardContent>
-                  <Ticket ticket={ticket} onDelete={handleDelete} />
-                </CardContent>
-              </Card>
+              <Ticket ticket={ticket} onDelete={handleDelete} onEdit={handleEdit} />
             </Grid>
           ))}
         </Grid>

@@ -1,15 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Card,
   CardContent,
   Typography,
   IconButton,
-  CardActions
+  CardActions,
+  Box,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Button
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 import LowPriorityIcon from '@mui/icons-material/LowPriority';
 import MediumPriorityIcon from '@mui/icons-material/Error';
 import HighPriorityIcon from '@mui/icons-material/PriorityHigh';
+import { format } from 'date-fns';
+import TicketForm from './TicketForm';
 
 const getPriorityIcon = (priority) => {
   switch (priority.toLowerCase()) {
@@ -24,25 +33,66 @@ const getPriorityIcon = (priority) => {
   }
 };
 
-const Ticket = ({ ticket, onDelete }) => {
+const Ticket = ({ ticket, onDelete, onEdit }) => {
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const handleFormSubmit = (formData) => {
+    onEdit({ ...ticket, ...formData });
+    handleClose();
+  };
+
   return (
     <Card>
       <CardContent>
-        <Typography variant="h5" component="h2">
-          {ticket.title}
+        <Typography variant="h5" component="div">
+          {ticket.name}
         </Typography>
-        <Typography color="textSecondary">
-          {ticket.description}
-        </Typography>
-        <Typography variant="body2" component="p" style={{ display: 'flex', alignItems: 'center' }}>
-          Priority: {getPriorityIcon(ticket.priority)} {ticket.priority}
-        </Typography>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 1 }}>
+          <Typography variant="body2" color="text.secondary">
+            <strong>Product:</strong> {ticket.product}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            <strong>Type:</strong> {ticket.type}
+          </Typography>
+        </Box>
+        <Box sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
+          <Typography variant="body2" color="text.secondary">
+            <strong>Priority:</strong>
+          </Typography>
+          {getPriorityIcon(ticket.priority)}
+          <Typography variant="body2" color="text.secondary">
+            {ticket.priority}
+          </Typography>
+        </Box>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 1 }}>
+          <Typography variant="body2" color="text.secondary">
+            <strong>Start Date:</strong> {ticket.startDate ? format(new Date(ticket.startDate), 'MM/dd/yyyy') : 'N/A'}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            <strong>End Date:</strong> {ticket.endDate ? format(new Date(ticket.endDate), 'MM/dd/yyyy') : 'N/A'}
+          </Typography>
+        </Box>
       </CardContent>
       <CardActions>
+        <IconButton aria-label="edit" onClick={handleOpen}>
+          <EditIcon />
+        </IconButton>
         <IconButton aria-label="delete" onClick={() => onDelete(ticket.id)}>
           <DeleteIcon />
         </IconButton>
       </CardActions>
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>Edit Ticket</DialogTitle>
+        <DialogContent>
+          <TicketForm onSubmit={handleFormSubmit} initialData={ticket} />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+        </DialogActions>
+      </Dialog>
     </Card>
   );
 };

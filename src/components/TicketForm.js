@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   TextField,
   Button,
@@ -7,17 +7,37 @@ import {
   Container,
   Typography
 } from '@mui/material';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 
-const TicketForm = ({ onSubmit }) => {
+const TicketForm = ({ onSubmit, initialData = {} }) => {
   const [formData, setFormData] = useState({
-    title: '',
-    description: '',
-    priority: 'Low'
+    name: '',
+    product: '',
+    type: '',
+    priority: 'Low',
+    startDate: null,
+    endDate: null,
   });
 
+  useEffect(() => {
+    if (initialData) {
+      setFormData({
+        name: initialData.name || '',
+        product: initialData.product || '',
+        type: initialData.type || '',
+        priority: initialData.priority || 'Low',
+        startDate: initialData.startDate || null,
+        endDate: initialData.endDate || null,
+      });
+    }
+  }, [initialData]);
+
   const [errors, setErrors] = useState({
-    title: false,
-    description: false,
+    name: false,
+    product: false,
+    type: false,
   });
 
   const handleChange = (e) => {
@@ -27,7 +47,6 @@ const TicketForm = ({ onSubmit }) => {
       [name]: value
     }));
 
-    // Clear error when user types
     if (errors[name]) {
       setErrors(prevErrors => ({
         ...prevErrors,
@@ -36,16 +55,22 @@ const TicketForm = ({ onSubmit }) => {
     }
   };
 
+  const handleDateChange = (name, date) => {
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: date
+    }));
+  };
+
   const validateForm = () => {
     let isValid = true;
     const newErrors = {
-      title: !formData.title.trim(),
-      description: !formData.description.trim(),
+      name: !formData.name.trim(),
+      product: !formData.product.trim(),
+      type: !formData.type.trim(),
     };
 
     setErrors(newErrors);
-
-    // Check if there are any errors
     isValid = !Object.values(newErrors).some(error => error);
 
     return isValid;
@@ -55,65 +80,85 @@ const TicketForm = ({ onSubmit }) => {
     e.preventDefault();
     if (validateForm()) {
       onSubmit(formData);
-      setFormData({
-        title: '',
-        description: '',
-        priority: 'Low'
-      });
     }
   };
 
   return (
     <Container maxWidth="sm">
-      <Box sx={{ mt: 4 }}>        
-        <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
-          <TextField
-            fullWidth
-            label="Title"
-            name="title"
-            value={formData.title}
-            onChange={handleChange}
-            margin="normal"
-            required
-            error={errors.title}
-            helperText={errors.title ? "Title is required" : ""}
+      <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
+        <TextField
+          fullWidth
+          label="Name"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          margin="normal"
+          required
+          error={errors.name}
+          helperText={errors.name ? "Name is required" : ""}
+        />
+        <TextField
+          fullWidth
+          label="Product"
+          name="product"
+          value={formData.product}
+          onChange={handleChange}
+          margin="normal"
+          required
+          error={errors.product}
+          helperText={errors.product ? "Product is required" : ""}
+        />
+        <TextField
+          fullWidth
+          label="Type"
+          name="type"
+          value={formData.type}
+          onChange={handleChange}
+          margin="normal"
+          required
+          error={errors.type}
+          helperText={errors.type ? "Type is required" : ""}
+        />
+        <TextField
+          select
+          fullWidth
+          label="Priority"
+          name="priority"
+          value={formData.priority}
+          onChange={handleChange}
+          margin="normal"
+          required
+        >
+          <MenuItem value="Low">Low</MenuItem>
+          <MenuItem value="Medium">Medium</MenuItem>
+          <MenuItem value="High">High</MenuItem>
+        </TextField>
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <DatePicker
+            label="Start Date"
+            value={formData.startDate}
+            onChange={(date) => handleDateChange('startDate', date)}
+            renderInput={(params) => (
+              <TextField {...params} fullWidth margin="normal" required />
+            )}
           />
-          <TextField
-            fullWidth
-            label="Description"
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-            margin="normal"
-            multiline
-            rows={4}
-            required
-            error={errors.description}
-            helperText={errors.description ? "Description is required" : ""}
+          <DatePicker
+            label="End Date"
+            value={formData.endDate}
+            onChange={(date) => handleDateChange('endDate', date)}
+            renderInput={(params) => (
+              <TextField {...params} fullWidth margin="normal" required />
+            )}
           />
-          <TextField
-            select
-            fullWidth
-            label="Priority"
-            name="priority"
-            value={formData.priority}
-            onChange={handleChange}
-            margin="normal"
-            required
-          >
-            <MenuItem value="Low">Low</MenuItem>
-            <MenuItem value="Medium">Medium</MenuItem>
-            <MenuItem value="High">High</MenuItem>
-          </TextField>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
-            Submit
-          </Button>
-        </Box>
+        </LocalizationProvider>
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          sx={{ mt: 3, mb: 2 }}
+        >
+          Submit
+        </Button>
       </Box>
     </Container>
   );
