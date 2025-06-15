@@ -1,23 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
+import TicketForm from '../components/TicketForm';
 
 const CreateTicket = () => {
-  const [formData, setFormData] = useState({
-    title: '',
-    description: '',
-    priority: 'Low'
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
+  const handleSubmit = (formData) => {
     // Retrieve existing tickets from local storage or initialize an empty array
     const existingTickets = JSON.parse(localStorage.getItem('tickets')) || [];
 
@@ -34,56 +19,13 @@ const CreateTicket = () => {
     // Log the form data to the console
     console.log('Form submitted:', formData);
 
-    // Reset form after submission
-    setFormData({
-      title: '',
-      description: '',
-      priority: 'Low'
-    });
-
     alert('Ticket created and stored in local storage!');
   };
 
   return (
     <div>
       <h2>Create a Ticket</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="title">Title:</label>
-          <input
-            type="text"
-            id="title"
-            name="title"
-            value={formData.title}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="description">Description:</label>
-          <textarea
-            id="description"
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="priority">Priority:</label>
-          <select
-            id="priority"
-            name="priority"
-            value={formData.priority}
-            onChange={handleChange}
-          >
-            <option value="Low">Low</option>
-            <option value="Medium">Medium</option>
-            <option value="High">High</option>
-          </select>
-        </div>
-        <button type="submit">Submit</button>
-      </form>
+      <TicketForm onSubmit={handleSubmit} />
     </div>
   );
 };
