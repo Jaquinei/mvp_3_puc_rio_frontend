@@ -1,35 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TicketForm from '../components/TicketForm';
+import Snackbar from '../components/Snackbar';
 
 const CreateTicket = () => {
   const navigate = useNavigate();
+  const [snackbarMessage, setSnackbarMessage] = useState('');
 
   const handleSubmit = (formData) => {
-    // Retrieve existing tickets from local storage or initialize an empty array
     const existingTickets = JSON.parse(localStorage.getItem('tickets')) || [];
-
-    // Add the new ticket to the array
     const newTicket = {
-      id: Date.now(), // Use a simple timestamp as a unique ID
+      id: Date.now(),
       ...formData
     };
     existingTickets.push(newTicket);
-
-    // Save the updated array back to local storage
     localStorage.setItem('tickets', JSON.stringify(existingTickets));
 
-    // Redirect to the home page after successful submission
-    navigate('/');
+    // Set snackbar message
+    setSnackbarMessage('Ticket created and stored in local storage!');
 
-    // Optional: Show an alert or notification
-    alert('Ticket created and stored in local storage!');
+    // Redirect to the home page after successful submission
+   setTimeout( ()=> {navigate('/')}, 5000);
   };
 
   return (
     <div>
       <h2>Create a Ticket</h2>
       <TicketForm onSubmit={handleSubmit} />
+      <Snackbar message={snackbarMessage} />
     </div>
   );
 };
