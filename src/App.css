@@ -1,0 +1,110 @@
+/* Basic Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Header Styles */
+header {
+  background-color: #282c34;
+  padding: 20px;
+  color: white;
+  text-align: center;
+}
+
+/* Menu Styles */
+nav ul {
+  display: flex;
+  list-style: none;
+  background-color: #333;
+  padding: 10px;
+  justify-content: center;
+}
+
+nav ul li {
+  margin: 0 10px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+/* Main Content Styles */
+main {
+  padding: 20px;
+  flex: 1;
+}
+
+/* Ticket List Styles */
+.ticket-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ticket {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 15px;
+}
+
+/* Form Styles */
+form div {
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  background-color: #282c34;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Footer Styles */
+footer {
+  background-color: #282c34;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Responsive Styles */
+@media (min-width: 768px) {
+  .ticket-list {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .ticket {
+    flex: 1 1 calc(33% - 20px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .ticket {
+    flex: 1 1 calc(25% - 20px);
+  }
+}

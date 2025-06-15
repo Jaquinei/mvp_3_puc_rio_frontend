@@ -7,20 +7,21 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import CreateTicket from './pages/CreateTicket';
-
+import './App.css';
 
 const App = () => {
   return (
     <Router>
       <Header />
       <Menu />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/create-ticket" element={<CreateTicket />} />
-
-    </Routes>
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/create-ticket" element={<CreateTicket />} />
+        </Routes>
+      </main>
       <Footer />
     </Router>
   );

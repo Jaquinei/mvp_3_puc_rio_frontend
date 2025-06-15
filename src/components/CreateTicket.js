@@ -17,14 +17,31 @@ const CreateTicket = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
+
+    // Retrieve existing tickets from local storage or initialize an empty array
+    const existingTickets = JSON.parse(localStorage.getItem('tickets')) || [];
+
+    // Add the new ticket to the array
+    const newTicket = {
+      id: Date.now(), // Use a simple timestamp as a unique ID
+      ...formData
+    };
+    existingTickets.push(newTicket);
+
+    // Save the updated array back to local storage
+    localStorage.setItem('tickets', JSON.stringify(existingTickets));
+
+    // Log the form data to the console
     console.log('Form submitted:', formData);
+
     // Reset form after submission
     setFormData({
       title: '',
       description: '',
       priority: 'Low'
     });
+
+    alert('Ticket created and stored in local storage!');
   };
 
   return (
