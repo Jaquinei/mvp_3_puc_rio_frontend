@@ -7,15 +7,15 @@
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f5f5f5;
+  background-color: #f0f8ff; /* Pastel blue background */
   color: #333;
 }
 
 /* Header Styles */
 header {
-  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  background: linear-gradient(135deg, #b3d9ff, #d6eaff); /* Light pastel blue gradient */
   padding: 1rem;
-  color: white;
+  color: #333;
   text-align: center;
   font-size: 1.5rem;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -26,7 +26,7 @@ header {
 
 /* Menu Styles */
 nav {
-  background-color: #4a4a4a;
+  background-color: #a3c9f4; /* Soft pastel blue */
   padding: 0.5rem;
 }
 
@@ -42,14 +42,14 @@ nav ul li {
 }
 
 nav ul li a {
-  color: white;
+  color: #ffffff; /* White text */
   text-decoration: none;
   font-weight: bold;
   transition: color 0.3s;
 }
 
 nav ul li a:hover {
-  color: #a777e3;
+  color: #d6eaff; /* Lighter pastel blue */
 }
 
 /* Main Content Styles */
@@ -68,7 +68,7 @@ main {
 }
 
 .ticket {
-  background-color: white;
+  background-color: #ffffff; /* White background */
   border-radius: 8px;
   padding: 1.5rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -91,12 +91,12 @@ main {
 
 /* Form Styles */
 form {
-  background-color: white;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  max-width: 600px;
   margin: 0 auto;
+  padding: 0.5rem; /* Reduced padding */
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 350px; /* Reduced width */
 }
 
 form div {
@@ -119,25 +119,24 @@ input, textarea, select {
 }
 
 button {
-  background: linear-gradient(135deg, #6e8efb, #a777e3);
+  background: linear-gradient(135deg, #b3d9ff, #a3c9f4); /* Pastel blue gradient */
   color: white;
   padding: 0.75rem 1.5rem;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-size: 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: background 0.3s, transform 0.2s;
 }
 
 button:hover {
-  background: linear-gradient(135deg, #5a7df4, #9462d3);
+  background: linear-gradient(135deg, #a3c9f4, #92bce8); /* Slightly darker pastel blue */
   transform: translateY(-2px);
 }
 
 /* Footer Styles */
 footer {
-  background-color: #4a4a4a;
+  background-color: #a3c9f4; /* Soft pastel blue */
   color: white;
   text-align: center;
   padding: 1rem;

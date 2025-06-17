@@ -25,10 +25,10 @@ const Home = ({ searchTerm }) => {
 
     const lowercasedSearchTerm = searchTerm.toLowerCase();
     const filtered = tickets.filter(ticket =>
-      ticket.name.toLowerCase().includes(lowercasedSearchTerm) ||
-      ticket.product.toLowerCase().includes(lowercasedSearchTerm) ||
-      ticket.type.toLowerCase().includes(lowercasedSearchTerm) ||
-      ticket.priority.toLowerCase().includes(lowercasedSearchTerm)
+      (ticket.name?.toLowerCase().includes(lowercasedSearchTerm) || false) ||
+      (ticket.product?.toLowerCase().includes(lowercasedSearchTerm) || false) ||
+      (ticket.type?.toLowerCase().includes(lowercasedSearchTerm) || false) ||
+      (ticket.priority?.toLowerCase().includes(lowercasedSearchTerm) || false)
     );
     setFilteredTickets(filtered);
   }, [searchTerm, tickets]);

@@ -22,17 +22,32 @@ const TicketForm = ({ onSubmit, initialData = {} }) => {
   });
 
   useEffect(() => {
-    if (initialData) {
-      setFormData({
-        name: initialData.name || '',
-        product: initialData.product || '',
-        type: initialData.type || '',
-        priority: initialData.priority || 'Low',
-        startDate: initialData.startDate || null,
-        endDate: initialData.endDate || null,
+    // Check if initialData is provided and update formData only if necessary
+    if (initialData && Object.keys(initialData).length > 0) {
+      setFormData(prevFormData => {
+        // Only update if initialData is different from current formData
+        const shouldUpdate =
+          prevFormData.name !== initialData.name ||
+          prevFormData.product !== initialData.product ||
+          prevFormData.type !== initialData.type ||
+          prevFormData.priority !== initialData.priority ||
+          prevFormData.startDate !== initialData.startDate ||
+          prevFormData.endDate !== initialData.endDate;
+
+        if (shouldUpdate) {
+          return {
+            name: initialData.name || '',
+            product: initialData.product || '',
+            type: initialData.type || '',
+            priority: initialData.priority || 'Low',
+            startDate: initialData.startDate || null,
+            endDate: initialData.endDate || null,
+          };
+        }
+        return prevFormData;
       });
     }
-  }, [initialData]);
+  }, [initialData]); // Only re-run the effect if initialData changes
 
   const [errors, setErrors] = useState({
     name: false,
