@@ -10,6 +10,7 @@ import {
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { enGB } from 'date-fns/locale'; // Import locale for DAY/MONTH/YEAR format
 
 const TicketForm = ({ onSubmit, initialData = {} }) => {
   const [formData, setFormData] = useState({
@@ -148,7 +149,7 @@ const TicketForm = ({ onSubmit, initialData = {} }) => {
           <MenuItem value="Medium">Medium</MenuItem>
           <MenuItem value="High">High</MenuItem>
         </TextField>
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <LocalizationProvider dateAdapter={AdapterDateFns} locale={enGB}>
           <DatePicker
             label="Start Date"
             value={formData.startDate}

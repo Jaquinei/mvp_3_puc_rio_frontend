@@ -10,7 +10,8 @@ import {
   DialogTitle,
   DialogContent,
   DialogActions,
-  Button
+  Button,
+  Tooltip
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
@@ -62,27 +63,31 @@ const Ticket = ({ ticket, onDelete, onEdit }) => {
           <Typography variant="body2" color="text.secondary">
             <strong>Priority:</strong>
           </Typography>
-          {getPriorityIcon(ticket.priority)}
+            {getPriorityIcon(ticket.priority)}
           <Typography variant="body2" color="text.secondary">
             {ticket.priority}
           </Typography>
         </Box>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 1 }}>
           <Typography variant="body2" color="text.secondary">
-            <strong>Start Date:</strong> {ticket.startDate ? format(new Date(ticket.startDate), 'MM/dd/yyyy') : 'N/A'}
+            <strong>Start Date:</strong> {ticket.startDate ? format(new Date(ticket.startDate), 'dd/MM/yyyy') : 'N/A'}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            <strong>End Date:</strong> {ticket.endDate ? format(new Date(ticket.endDate), 'MM/dd/yyyy') : 'N/A'}
+            <strong>End Date:</strong> {ticket.endDate ? format(new Date(ticket.endDate), 'dd/MM/yyyy') : 'N/A'}
           </Typography>
         </Box>
       </CardContent>
       <CardActions>
-        <IconButton aria-label="edit" onClick={handleOpen}>
-          <EditIcon />
-        </IconButton>
-        <IconButton aria-label="delete" onClick={() => onDelete(ticket.id)}>
-          <DeleteIcon />
-        </IconButton>
+        <Tooltip title="Edit Ticket">
+          <IconButton aria-label="edit" onClick={handleOpen}>
+            <EditIcon />
+          </IconButton>
+        </Tooltip>
+        <Tooltip title="Delete Ticket">
+          <IconButton aria-label="delete" onClick={() => onDelete(ticket.id)}>
+            <DeleteIcon />
+          </IconButton>
+        </Tooltip>
       </CardActions>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Edit Ticket</DialogTitle>
