@@ -21,7 +21,7 @@ As instruções para fazer o build da imagem e rodar os container estão na seç
 
 Arquitetura implementada.
 
-![Diagrama dos componentes do system](./src/assets/diagram/diagraa_mvp.png)
+![Diagrama dos componentes do system](./src/assets/diagram/diagram_mvp.png)
 
 ## Front-End (Interface)
 
