@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
+
 import {
   AppBar,
   Toolbar,
@@ -13,6 +15,7 @@ import SearchIcon from '@mui/icons-material/Search';
 
 const Header = ({ onSearch }) => {
   const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
@@ -21,6 +24,7 @@ const Header = ({ onSearch }) => {
   const handleSearchSubmit = (event) => {
     event.preventDefault();
     onSearch(searchTerm);
+    navigate('/'); // Navigate to the home page after search
   };
 
   return (
