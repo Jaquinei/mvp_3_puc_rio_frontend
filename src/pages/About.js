@@ -20,10 +20,7 @@ const About = () => {
               The system is designed to help users manage their tickets efficiently, providing a simple and effective way to track requests and issues.
             </Typography>
             <Typography variant="body1" paragraph>
-              With a user-friendly interface and powerful features, you can easily create, prioritize, and search for tickets. Our system ensures that you never miss an important request and can focus on delivering excellent service.
-            </Typography>
-            <Typography variant="body1">
-              Thank you for choosing our Ticket Management System. We are committed to providing you with the best tools to manage your tickets effectively.
+              You can easily create, prioritize, and search for tickets. Our system ensures that you never miss an important request and can focus on delivering service.
             </Typography>
           </CardContent>
         </Card>
