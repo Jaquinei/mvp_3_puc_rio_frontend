@@ -27,11 +27,11 @@ const CreateTicket = () => {
    setTimeout( ()=> {navigate('/')}, 5000);
   };
 
-  return (    
+  return (
     <div>  
         <Typography variant="h3" component="h1" gutterBottom align="center">
           Create Ticket
-        </Typography>   
+        </Typography>
       <TicketForm onSubmit={handleSubmit} />
       <Snackbar message={snackbarMessage} />
     </div>

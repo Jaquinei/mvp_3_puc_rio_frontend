@@ -21,7 +21,7 @@ Arquitetura implementada.
 
 ## Front-End (Interface)
 
-O Front-End foi desenvolvido usando *React*, *CSS* e *JavaScript*. Utiliza uma *API* (disponibilizada pelo Notion) para popular e atualizar o banco de dados armazenado no localStorage. Através da *API*, é possível acessar dados que foram populados uma pagina do Notion.
+O Front-End foi desenvolvido usando *React*, *CSS*, *Material UI* e *JavaScript*. Utiliza uma *API* (disponibilizada pelo Notion) para popular e atualizar o banco de dados armazenado no localStorage. Através da *API*, é possível acessar dados que foram populados uma pagina do Notion.
 
 A interface permite o cadastro de tarefas para serem executadas pelo time de *DevOps* da empresa. Tarefas preenchidas por terceiros em uma página Notion, podem ser tratadas por esse sistema, conforme o time assin o deseje.
 
