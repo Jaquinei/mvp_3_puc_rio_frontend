@@ -49,9 +49,11 @@ const Home = ({ searchTerm }) => {
 
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-      <Typography variant="h4" component="h1" gutterBottom>
-        Ticket List
-      </Typography>
+
+    <Typography variant="h4" component="h1" sx={{ flexGrow: 1 }}>
+      {searchTerm ? `Ticket List - filtered for "${searchTerm}"` : 'Ticket List'}
+    </Typography>
+
       {filteredTickets.length === 0 ? (
         <Alert severity="info" sx={{ width: '100%' }}>
           No tickets found.

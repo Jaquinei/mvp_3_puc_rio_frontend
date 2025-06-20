@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
-
+import { useNavigate } from 'react-router-dom';
 import {
   AppBar,
   Toolbar,
@@ -10,16 +9,15 @@ import {
   IconButton,
   Container,
   Box,
-  Tooltip, // Import Tooltip
+  Tooltip,
+  Badge,
 } from '@mui/material';
-
 import SearchIcon from '@mui/icons-material/Search';
-import ClearIcon from '@mui/icons-material/Clear'; // Import ClearIcon
-
+import ClearIcon from '@mui/icons-material/Clear';
 
 const Header = ({ onSearch }) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
@@ -36,7 +34,6 @@ const Header = ({ onSearch }) => {
     onSearch(''); // Reset the filter
     navigate('/'); // Navigate to the home page
   };
-
 
   return (
     <AppBar position="static">
@@ -56,11 +53,23 @@ const Header = ({ onSearch }) => {
               backgroundColor: '#ffffff',
               borderRadius: '8px',
               boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-              height: '100px', // Set a fixed height for the white area
-              width: '40%', // Adjusted width
+              height: '100px',
+              width: '40%',
+              position: 'relative', // Ensure badge floats relative to this box
             }}
           >
-           <TextField
+            <Badge
+              color="info"
+              badgeContent={searchTerm ? 'Filtered' : null}
+              sx={{
+                position: 'absolute',
+                top: '18%',
+                right: '10%',
+                zIndex: 1,
+                pointerEvents: 'none', // Prevent interference with mouse events
+              }}
+            />
+            <TextField
               variant="outlined"
               size="small"
               placeholder="Search Tickets"
@@ -69,44 +78,38 @@ const Header = ({ onSearch }) => {
               sx={{
                 backgroundColor: 'white',
                 borderRadius: '4px',
-                width: '80%', // Adjusted width
-                height: '65%', // Explicit height for the TextField
-                margin: 0, // Remove margin-bottom
-                alignSelf: 'center', // Ensure vertical alignment
-                display: 'flex', // Ensure proper alignment
+                width: '80%',
+                height: '65%',
+                marginTop: 0,
+                alignSelf: 'center',
+                display: 'flex',
               }}
               InputProps={{
                 endAdornment: (
-                  <InputAdornment position="end"
-                    sx={{
-                        display: 'flex',
-                        alignItems: 'center', // Center the icon vertically
-                        justifyContent: 'center', // Center the icon horizontally
-                        height: '100%', // Ensure it takes the full height of the TextField
-                      }}
-                    >
+                  <InputAdornment position="end"                  
+                  >               
                     <Tooltip title="Click for search Tickets">
-                        <IconButton type="submit" edge="end"
-                          sx={{
-                              display: 'flex',
-                              alignItems: 'center', // Center the icon vertically
-                              justifyContent: 'center', // Center the icon horizontally
-                              marginTop: '80%', // Remove top margin
-                            }}
-                        >
-                        <SearchIcon />                      
+                      <IconButton type="submit"
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center', // Ensures vertical alignment
+                          marginTop: '50%',
+                          height: '100%', // Matches the height of the TextField
+                        }}
+                      >
+                      <SearchIcon />
                       </IconButton>
                     </Tooltip>
                   </InputAdornment>
                 ),
               }}
             />
-             <Tooltip title="Clear Filter">
+            <Tooltip title="Clear Filter">
               <IconButton
                 onClick={handleClearFilter}
                 sx={{
-                  marginLeft: '1rem', // Add spacing between the button and the TextField
-                  height: '45%', // Match the height of the TextField
+                  marginLeft: '1rem',
+                  height: '45%',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
