@@ -21,9 +21,9 @@ Arquitetura implementada.
 
 ## Front-End (Interface)
 
-O Front-End foi desenvolvido usando *React*, *CSS*, *Material UI* e *JavaScript*. Utiliza uma *API* (disponibilizada pelo Notion) para popular e atualizar o banco de dados armazenado no localStorage. Através da *API*, é possível acessar dados que foram populados uma pagina do Notion.
+O Front-End foi desenvolvido usando *React*, *Material UI*, *CSS* e *JavaScript*. Utiliza uma *API* (disponibilizada pelo Notion) para popular e atualizar o banco de dados armazenado no localStorage. Através da *API*, é possível acessar dados que foram populados uma pagina do Notion.
 
-A interface permite o cadastro de tarefas para serem executadas pelo time de *DevOps* da empresa. Tarefas preenchidas por terceiros em uma página Notion, podem ser tratadas por esse sistema, conforme o time assin o deseje.
+A interface do usuário permite o cadastro de tarefas para serem executadas pelo time de *DevOps* da empresa. Tarefas preenchidas por terceiros em uma página Notion, podem ser tratadas por esse sistema, conforme o time assim o deseje.
 
 ### Notion page
 Abaixo a pagina do Notion de onde serão extraidas as informações de tarefas a serem tratadas pelo time de DevOps.
@@ -47,7 +47,7 @@ Abaixo a pagina do Notion de onde serão extraidas as informações de tarefas a
 
 ### Como iniciar o Front-End usando o Docker:
 
-- É possivel fazer o build da imagem de cada repositorio individualmente usando apenas docker. Caso tenha interesse, siga os passos a seguir.
+- É possivel fazer o build da imagem do repositóriousando apenas docker. Caso tenha interesse, siga os passos a seguir.
 Certifique-se que o Docker esteja instalados
 - Cria a imagem
 ```
@@ -74,7 +74,7 @@ Para o backend acessar a API é necessário utilizar as seguintes informações:
 - Database ID
 
 Estas informações (*Notion API URL*, *Token e Database ID*) serão disponibilizadas no texto de submissão deste MVP.
-Para executar o Docker Compose, as informações deverão ser adiconadas na seção environment do arquivo. Será necessário preencher os campos *API_EXTERNA_DATABASE_ID* e *API_EXTERNA_TOKEN* para possibilitar a conexão com o Notion.
+Para executar o Docker Compose, as informações deverão ser adicionadas na seção environment do arquivo. Será necessário preencher os campos *API_EXTERNA_DATABASE_ID* e *API_EXTERNA_TOKEN* para possibilitar a conexão com o Notion.
 
 Exemplo do Docker-Compose:
 ```
@@ -82,10 +82,11 @@ Exemplo do Docker-Compose:
         - API_EXTERNA_DATABASE_ID=xxxxxx
         - API_EXTERNA_TOKEN=yyyyyy
 ```
-(substitua o texto xxxxxx com o *Databse ID* fornecido no texto da submissão do MVP e o yyyyyy com o *Token Notion* forneciso no texto da submissão do MVP)
+(substitua o texto xxxxxx com o *Database ID* fornecido no texto da submissão do MVP e o yyyyyy com o *Token Notion* fornecido no texto da submissão do MVP)
 
-Foi criada um Notion page com uma lista de Tasks. Essas tasks podem ser incluidas no Prodution Automation Tool através do botão na Interface *"Get task from an external API (Notion)"*. 
-Para acessar a lista do Notion, diretamente, o seguinte link pode ser usado (https://www.notion.so/1ce16f12775a80da8366cacacaa3d3da?v=1ce16f12775a807e846d000c874669ac&pvs=4).
+Foi criada um Notion page com uma lista de Tasks. Essas tasks podem ser incluidas no *Prodution Automation Tool* através do botão na Interface *"Get task from an external API (Notion)"*.
+Para acessar a lista do Notion, diretamente, o seguinte link pode ser usado (https://www.notion.so/22816f12775a80beaa58d7458bc9e47d?v=22816f12775a818c917e000c9faf79b2&source=copy_link
+).
 
 # Development environment - Annotations
 Somente para desenvolvimento e troubleshooting. Não é necessário para a avaliação do MVP.
@@ -97,7 +98,7 @@ Somente para desenvolvimento e troubleshooting. Não é necessário para a avali
 Faça clone do projeto
 
 Opção 01:
- - abra o arquivo *index.html* no seu browser (idealmente inicie o Back-End usando as instruções do *README* disponível no repositório do Back-End)
+ - abra o arquivo *index.html* no seu browser
 
 Opção 02:
 -  após iniciar o container, acesse a URL http://localhost:8080
