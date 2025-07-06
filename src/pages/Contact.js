@@ -6,8 +6,10 @@ import {
   Card,
   CardContent,
   TextField,
-  Button
+  Button,
+  Snackbar
 } from '@mui/material';
+import MuiAlert from '@mui/material/Alert';
 
 const Contact = () => {
   const [formData, setFormData] = React.useState({
@@ -15,6 +17,7 @@ const Contact = () => {
     email: '',
     message: ''
   });
+  const [open, setOpen] = React.useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,7 +31,29 @@ const Contact = () => {
     e.preventDefault();
     // Handle form submission logic here
     console.log('Form submitted:', formData);
+    // Save contact form data to local storage
+    localStorage.setItem('contactForm', JSON.stringify(formData));
+    setOpen(true);
   };
+
+  // Create a custom Alert for blue color
+  const BlueAlert = React.forwardRef(function BlueAlert(props, ref) {
+    return (
+      <MuiAlert
+        elevation={6}
+        ref={ref}
+        variant="filled"
+        {...props}
+        sx={{
+          mb: 4,
+          backgroundColor: '#1976d2', // Material-UI blue
+          color: '#fff',
+          justifyContent: 'center',
+          width: '100%',
+        }}
+      />
+    );
+  });
 
   return (
     <Container maxWidth="md">
@@ -84,6 +109,16 @@ const Contact = () => {
           </CardContent>
         </Card>
       </Box>
+      <Snackbar
+        open={open}
+        autoHideDuration={3000}
+        onClose={() => setOpen(false)}
+        anchorOrigin={{ vertical: 'botton', horizontal: 'center' }} // Centered
+      >
+        <BlueAlert onClose={() => setOpen(false)} severity="info">
+          Contact data was successfully sent!
+        </BlueAlert>
+      </Snackbar>
     </Container>
   );
 };
