@@ -34,7 +34,7 @@ const getPriorityIcon = (priority) => {
   }
 };
 
-const Ticket = ({ ticket, onDelete, onEdit }) => {
+const Ticket = ({ ticket, onDelete, onEdit, onTitleClick }) => {
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => setOpen(true);
@@ -48,7 +48,12 @@ const Ticket = ({ ticket, onDelete, onEdit }) => {
   return (
     <Card>
       <CardContent>
-        <Typography variant="h5" component="div">
+        <Typography
+          variant="h5"
+          component="div"
+          sx={{ cursor: onTitleClick ? 'pointer' : 'default', textDecoration: onTitleClick ? 'underline' : 'none' }}
+          onClick={onTitleClick}
+        >
           {ticket.name}
         </Typography>
         <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 1 }}>
