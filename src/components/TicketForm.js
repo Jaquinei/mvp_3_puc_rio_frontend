@@ -5,51 +5,15 @@ import {
   MenuItem,
   Box,
   Container,
-  Typography
+  Typography,
+  Select
 } from '@mui/material';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { enGB } from 'date-fns/locale'; // Import locale for DAY/MONTH/YEAR format
 
-const TicketForm = ({ onSubmit, initialData = {} }) => {
-  const [formData, setFormData] = useState({
-    name: '',
-    product: '',
-    type: '',
-    priority: 'Low',
-    startDate: null,
-    endDate: null,
-  });
-
-  useEffect(() => {
-    // Check if initialData is provided and update formData only if necessary
-    if (initialData && Object.keys(initialData).length > 0) {
-      setFormData(prevFormData => {
-        // Only update if initialData is different from current formData
-        const shouldUpdate =
-          prevFormData.name !== initialData.name ||
-          prevFormData.product !== initialData.product ||
-          prevFormData.type !== initialData.type ||
-          prevFormData.priority !== initialData.priority ||
-          prevFormData.startDate !== initialData.startDate ||
-          prevFormData.endDate !== initialData.endDate;
-
-        if (shouldUpdate) {
-          return {
-            name: initialData.name || '',
-            product: initialData.product || '',
-            type: initialData.type || '',
-            priority: initialData.priority || 'Low',
-            startDate: initialData.startDate || null,
-            endDate: initialData.endDate || null,
-          };
-        }
-        return prevFormData;
-      });
-    }
-  }, [initialData]); // Only re-run the effect if initialData changes
-
+const TicketForm = ({ formData, setFormData, onSubmit }) => {
   const [errors, setErrors] = useState({
     name: false,
     product: false,
@@ -99,6 +63,7 @@ const TicketForm = ({ onSubmit, initialData = {} }) => {
     }
   };
 
+
   return (
     <Container maxWidth="sm">
       <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
@@ -106,7 +71,7 @@ const TicketForm = ({ onSubmit, initialData = {} }) => {
           fullWidth
           label="Name"
           name="name"
-          value={formData.name}
+          value={formData.name ?? ''}
           onChange={handleChange}
           margin="normal"
           required
@@ -117,7 +82,7 @@ const TicketForm = ({ onSubmit, initialData = {} }) => {
           fullWidth
           label="Product"
           name="product"
-          value={formData.product}
+          value={formData.product ?? ''}
           onChange={handleChange}
           margin="normal"
           required
@@ -128,40 +93,40 @@ const TicketForm = ({ onSubmit, initialData = {} }) => {
           fullWidth
           label="Type"
           name="type"
-          value={formData.type}
+          value={formData.type ?? ''}
           onChange={handleChange}
           margin="normal"
           required
           error={errors.type}
           helperText={errors.type ? "Type is required" : ""}
         />
-        <TextField
-          select
-          fullWidth
-          label="Priority"
+        <Select
           name="priority"
-          value={formData.priority}
+          value={formData.priority || ''}
           onChange={handleChange}
+          fullWidth
           margin="normal"
           required
         >
-          <MenuItem value="Low">Low</MenuItem>
-          <MenuItem value="Medium">Medium</MenuItem>
           <MenuItem value="High">High</MenuItem>
-        </TextField>
+          <MenuItem value="Medium">Medium</MenuItem>
+          <MenuItem value="Low">Low</MenuItem>
+        </Select>
         <LocalizationProvider dateAdapter={AdapterDateFns} locale={enGB}>
           <DatePicker
             label="Start Date"
-            value={formData.startDate}
+            value={formData.startDate ?? null}
             onChange={(date) => handleDateChange('startDate', date)}
+            format="dd/MM/yyyy"
             renderInput={(params) => (
               <TextField {...params} fullWidth margin="normal" required />
             )}
           />
           <DatePicker
             label="End Date"
-            value={formData.endDate}
+            value={formData.endDate ?? null}
             onChange={(date) => handleDateChange('endDate', date)}
+            format="dd/MM/yyyy"
             renderInput={(params) => (
               <TextField {...params} fullWidth margin="normal" required />
             )}

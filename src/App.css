@@ -145,6 +145,27 @@ footer {
   width: 100%;
 }
 
+/* Floating Button Styles */
+.floating-notion-btn {
+  position: fixed;
+  bottom: 100px;           /* Sits above the footer */
+  right: 40px;
+  z-index: 1000;
+  padding: 12px 20px;
+  background: #90caf9;     /* Pastel blue */
+  color: #003366;          /* Dark blue text for contrast */
+  border: none;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.floating-notion-btn:hover {
+  background: #64b5f6;     /* Slightly darker pastel blue on hover */
+}
+
 /* Responsive Styles */
 @media (min-width: 768px) {
   .ticket-list {

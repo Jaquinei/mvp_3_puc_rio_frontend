@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { getAllDataFromNotion } from './assets/js/scripts';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Menu from './components/Menu';
@@ -12,6 +13,9 @@ import './App.css';
 
 const App = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  useEffect(() => {
+    getAllDataFromNotion();
+  }, []); // Runs only once when App mounts
 
   const handleSearch = (term) => {
     setSearchTerm(term);
