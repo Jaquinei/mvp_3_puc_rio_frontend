@@ -111,7 +111,7 @@ const Contact = () => {
       </Box>
       <Snackbar
         open={open}
-        autoHideDuration={3000}
+        autoHideDuration={5000}
         onClose={() => setOpen(false)}
         anchorOrigin={{ vertical: 'botton', horizontal: 'center' }} // Centered
       >
