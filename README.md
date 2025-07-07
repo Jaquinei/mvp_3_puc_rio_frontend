@@ -31,11 +31,11 @@ Abaixo a pagina do Notion de onde serão extraidas as informações de tarefas a
 Certifique-se que o Docker esteja instalados
 - Cria a imagem
 ```
-`docker build -t frontend_puc_rio_sprint_3_mvp .`
+docker build -t frontend_puc_rio_sprint_3_mvp .
 ```
 - Mapeia a porta local 8080 do host para a porta 3000 do container
 ```
-`docker run -d -p 8080:3000 frontend_puc_rio_sprint_3_mvp`
+docker run -d -p 8080:3000 frontend_puc_rio_sprint_3_mvp
 ```
 - Acesse a URL http://localhost:8080 no navegador
 
@@ -78,5 +78,5 @@ Somente para desenvolvimento e troubleshooting. Não é necessário para a avali
 - Cria a imagem
 - `docker build -t frontend_puc_rio_sprint_3_mvp .`
 - Mapeia a porta local 8080 do host para a porta 3000 do container
-- `docker run -d -p 8080:3000 frontend_puc_rio_sprint_3_mvp`
+- `docker run -d -p 8080:80 frontend_puc_rio_sprint_3_mvp`
 - Acesse a URL http://localhost:8080 no navegador
