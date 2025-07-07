@@ -37,7 +37,19 @@ const getPriorityIcon = (priority) => {
 const Ticket = ({ ticket, onDelete, onEdit, onTitleClick }) => {
   const [open, setOpen] = useState(false);
 
-  const handleOpen = () => setOpen(true);
+  const [editFormData, setEditFormData] = useState(null);
+
+  const handleOpen = (item) =>{
+    console.log('Editing ticket:', item);
+
+      setEditFormData({
+      ...item,
+      startDate: item.startDate ? new Date(item.startDate) : null,
+      endDate: item.endDate ? new Date(item.endDate) : null,
+    });
+
+    setOpen(true);
+  }
   const handleClose = () => setOpen(false);
 
   const handleFormSubmit = (formData) => {
@@ -84,7 +96,7 @@ const Ticket = ({ ticket, onDelete, onEdit, onTitleClick }) => {
       </CardContent>
       <CardActions>
         <Tooltip title="Edit Ticket">
-          <IconButton aria-label="edit" onClick={handleOpen}>
+          <IconButton aria-label="edit" onClick={() => handleOpen(ticket)}>
             <EditIcon />
           </IconButton>
         </Tooltip>
@@ -97,7 +109,13 @@ const Ticket = ({ ticket, onDelete, onEdit, onTitleClick }) => {
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Edit Ticket</DialogTitle>
         <DialogContent>
-          <TicketForm onSubmit={handleFormSubmit} initialData={ticket} />
+           {editFormData && (
+            <TicketForm
+              onSubmit={handleFormSubmit}
+              formData={editFormData}
+              setFormData={setEditFormData}
+            />
+          )}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
