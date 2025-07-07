@@ -45,6 +45,10 @@ Certifique-se que o Docker esteja instalados
 
 O código do Front-End está disponível neste repositório. Detalhes estão apresentados na secão [Front-End (Interface)](#frontend-interface)
 
+## Backend (API)
+
+O Back-End foi desenvolvido utilizando Node.js com o framework Express como servidor web. O Backend disponibiliza uma API REST que é consumida pelo Front-End. Esta API possibilita que dados disponíveis no Notion sejam consumidos pelo Front-End. O acesso aos dados do Notion é realizado pelo Back-End através da API disponibilizada pelo Notion.
+
 ## Acesso a uma API externa
 
 O acesso a API externa está sendo feito utilizando a API do Notion (https://developers.notion.com/)
@@ -54,19 +58,7 @@ Para o backend acessar a API é necessário utilizar as seguintes informações:
 - Database ID
 
 Estas informações (*Notion API URL*, *Token e Database ID*) serão disponibilizadas no texto de submissão deste MVP.
-Para executar o Docker Compose, as informações deverão ser adicionadas na seção environment do arquivo. Será necessário preencher os campos *API_EXTERNA_DATABASE_ID* e *API_EXTERNA_TOKEN* para possibilitar a conexão com o Notion.
-
-Exemplo do Docker-Compose:
-```
-    environment:
-        - API_EXTERNA_DATABASE_ID=xxxxxx
-        - API_EXTERNA_TOKEN=yyyyyy
-```
-(substitua o texto xxxxxx com o *Database ID* fornecido no texto da submissão do MVP e o yyyyyy com o *Token Notion* fornecido no texto da submissão do MVP)
-
-Foi criada um Notion page com uma lista de Tasks. Essas tasks podem ser incluidas no *Prodution Automation Tool* através do botão na Interface *"Get task from an external API (Notion)"*.
-Para acessar a lista do Notion, diretamente, o seguinte link pode ser usado (https://www.notion.so/22816f12775a80beaa58d7458bc9e47d?v=22816f12775a818c917e000c9faf79b2&source=copy_link
-).
+Mais detalhes para executação do backend estão disponíveis no README do repositório do Back-End.
 
 # Development environment - Annotations
 Somente para desenvolvimento e troubleshooting. Não é necessário para a avaliação do MVP.
