@@ -11,7 +11,7 @@ Este repositorio faz parte do MVP e contem o código para o Front-End.
 
 O Front-End disponibilizado neste repositório contem o docker file, possibilitando rodar containerizado. 
 
-As instruções para fazer o build da imagem e rodar os container estão na seção [Como iniciar o Front-End usando o Docker](#como-iniciar-o-frontend-usando-o-docker)
+As instruções para fazer o build da imagem e rodar os container estão na seção [Como iniciar o Front-End usando o Docker](#como-iniciar-o-front-end-usando-o-docker).
 
 ## Front-End (Interface)
 
@@ -23,7 +23,7 @@ A interface do usuário permite o cadastro de tarefas para serem executadas pelo
 ### Notion page
 Abaixo a pagina do Notion de onde serão extraidas as informações de tarefas a serem tratadas pelo time de DevOps.
 
-![Lista de terefas disponível no Notion](./src/assets/diagram/notion_page.png)
+![Lista de tarefas disponível no Notion](./src/assets/diagram/notion_page.png)
 
 ### Como iniciar o Front-End usando o Docker:
 
@@ -33,17 +33,17 @@ Certifique-se que o Docker esteja instalados
 ```
 docker build -t frontend_puc_rio_sprint_3_mvp .
 ```
-- Mapeia a porta local 8080 do host para a porta 3000 do container
+- Mapeia a porta local 8080 do host para a porta 80 do container
 ```
-docker run -d -p 8080:3000 frontend_puc_rio_sprint_3_mvp
+docker run -d -p 8080:80 frontend_puc_rio_sprint_3_mvp
 ```
 - Acesse a URL http://localhost:8080 no navegador
 
 # Visão geral dos módulos do MVP
 
-## Front-End (Interface)
+## Front-End (Interface) - Visão Geral
 
-O código do Front-End está disponível neste repositório. Detalhes estão apresentados na secão [Front-End (Interface)](#frontend-interface)
+O código do Front-End está disponível neste repositório. Detalhes estão apresentados na seção [Front-End (Interface)](#front-end-interface) acima.
 
 ## Backend (API)
 
@@ -77,6 +77,6 @@ Somente para desenvolvimento e troubleshooting. Não é necessário para a avali
 
 - Cria a imagem
 - `docker build -t frontend_puc_rio_sprint_3_mvp .`
-- Mapeia a porta local 8080 do host para a porta 3000 do container
+- Mapeia a porta local 8080 do host para a porta 80 do container
 - `docker run -d -p 8080:80 frontend_puc_rio_sprint_3_mvp`
 - Acesse a URL http://localhost:8080 no navegador
